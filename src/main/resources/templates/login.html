@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+    <h1>用户登录</h1><br>
+    <form th:action="@{/doLogin}" method="post">
+        <label for="username">用户名：</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="登录">
+    </form>
+    <h3>
+        <div th:text="${session.SPRING_SECURITY_LAST_EXCEPTION}"></div>
+    </h3>
+</body>
+</html>
