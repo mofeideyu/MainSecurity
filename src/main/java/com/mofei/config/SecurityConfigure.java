@@ -2,10 +2,13 @@ package com.mofei.config;
 
 import com.mofei.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /***自定义security相关配置*/
 @Configuration
@@ -14,6 +17,12 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
     @Autowired
     public void setMyUserDetailService(MyUserDetailService myUserDetailService) {
         this.myUserDetailService = myUserDetailService;
+    }
+
+    /**在工厂中指定密码加密方式*/
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
